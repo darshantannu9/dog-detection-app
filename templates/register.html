@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Dog Behavior Dashboard</title>
+</head>
+<body id="body" class="bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center min-h-screen font-sans transition-colors duration-500">
+
+  <!-- Dark/Light Mode Toggle -->
+  <div class="absolute top-4 right-4 z-50">
+    <button id="theme-toggle" class="bg-gray-700 text-gray-200 px-3 py-1 rounded-lg hover:bg-gray-600 transition">
+      Light Mode
+    </button>
+  </div>
+
+  <!-- Register Card -->
+  <div id="register-card" class="bg-gray-800 text-gray-100 rounded-2xl shadow-xl p-8 w-full max-w-sm transition-colors duration-500">
+    
+    <!-- Dog Image / Icon -->
+    <div class="flex justify-center mb-6">
+      <img src="{{ url_for('static', filename='images/dog_icon.png') }}" 
+           alt="Dog Logo" class="w-50 h-50 object-contain">
+    </div>
+
+    <!-- Title -->
+    <h2 class="text-2xl font-bold text-center mb-6 text-purple-300">Create Your Account</h2>
+
+    <!-- Register Form -->
+    <form action="{{ url_for('auth.register') }}" method="POST" class="space-y-5">
+      <div>
+        <label for="name" class="block mb-1 text-gray-300">Name</label>
+        <input type="text" name="name" id="name" placeholder="Enter your name"
+               class="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors duration-300">
+      </div>
+
+      <div>
+        <label for="email" class="block mb-1 text-gray-300">Email</label>
+        <input type="email" name="email" id="email" placeholder="Enter your email"
+               class="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors duration-300">
+      </div>
+
+      <div>
+        <label for="phone" class="block mb-1 text-gray-300">Phone</label>
+        <input type="text" name="phone" id="phone" placeholder="Enter your phone number"
+               class="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors duration-300">
+      </div>
+
+      <div>
+        <label for="password" class="block mb-1 text-gray-300">Password</label>
+        <div class="relative">
+          <input type="password" name="password" id="password" placeholder="Enter your password"
+                 class="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors duration-300">
+          <button type="button" id="togglePassword" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-300 hover:text-purple-400 transition">
+            Show
+          </button>
+        </div>
+      </div>
+
+      <button type="submit"
+              class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg font-semibold transition">
+        Register
+      </button>
+    </form>
+
+    <p class="text-center text-gray-400 mt-4">
+      Already registered? <a href="{{ url_for('auth.login') }}" class="text-purple-400 hover:text-purple-500 font-medium">Login</a>
+    </p>
+  </div>
+
+  <!-- JS -->
+  <script>
+    const toggle = document.getElementById('theme-toggle');
+    const body = document.getElementById('body');
+    const card = document.getElementById('register-card');
+
+    // Load theme from localStorage
+    if(localStorage.getItem('theme') === 'light'){
+      body.classList.remove('bg-gradient-to-br','from-gray-900','via-gray-800','to-black','text-gray-100');
+      body.classList.add('bg-gray-100','text-gray-900');
+      card.classList.remove('bg-gray-800','text-gray-100');
+      card.classList.add('bg-gray-200','text-gray-900');
+      toggle.textContent = "Dark Mode";
+    }
+
+    toggle.addEventListener('click', () => {
+      if(body.classList.contains('bg-gray-100')){
+        // Switch to Dark
+        body.classList.remove('bg-gray-100','text-gray-900');
+        body.classList.add('bg-gradient-to-br','from-gray-900','via-gray-800','to-black','text-gray-100');
+        card.classList.remove('bg-gray-200','text-gray-900');
+        card.classList.add('bg-gray-800','text-gray-100');
+        toggle.textContent = "Light Mode";
+        localStorage.setItem('theme','dark');
+      } else {
+        // Switch to Light
+        body.classList.remove('bg-gradient-to-br','from-gray-900','via-gray-800','to-black','text-gray-100');
+        body.classList.add('bg-gray-100','text-gray-900');
+        card.classList.remove('bg-gray-800','text-gray-100');
+        card.classList.add('bg-gray-200','text-gray-900');
+        toggle.textContent = "Dark Mode";
+        localStorage.setItem('theme','light');
+      }
+    });
+
+    // Show/Hide Password
+    const togglePassword = document.getElementById('togglePassword');
+    const password = document.getElementById('password');
+
+    togglePassword.addEventListener('click', () => {
+      if(password.type === "password"){
+        password.type = "text";
+        togglePassword.textContent = "Hide";
+      } else {
+        password.type = "password";
+        togglePassword.textContent = "Show";
+      }
+    });
+  </script>
+</body>
+</html>

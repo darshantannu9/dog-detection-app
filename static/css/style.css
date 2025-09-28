@@ -1,0 +1,102 @@
+/* ===== Color Scheme =====
+#A0D2EB (light blue)
+#E5EAF5 (light gray)
+#D0BDF4 (lavender)
+#8458B3 (deep purple)
+#494D5F (charcoal gray)
+*/
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  background: linear-gradient(120deg, #A0D2EB, #E5EAF5, #D0BDF4);
+  color: #494D5F;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 20px;
+  background: #8458B3;
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+/* Layout Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Cards */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+}
+
+/* Video */
+.video-feed {
+  width: 100%;
+  border-radius: 10px;
+ border: 3px solid #6b21a8;
+}
+
+.status-indicator {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 6px 12px;
+  display: inline-block;
+  border-radius: 6px;
+  background: #D0BDF4;
+  color: #494D5F;
+}
+
+/* Stats */
+.stats-info {
+  margin-top: 10px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 16px;
+}
+
+.stat-row:last-child {
+  border-bottom: none;
+}
+
+/* Contacts */
+.contacts-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contacts-section li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 16px;
+}
+
+.contacts-section li:last-child {
+  border-bottom: none;
+}
+
